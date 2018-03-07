@@ -12,5 +12,6 @@
 @interface DemoSupplementaryView : UIView <KKMediaSupplementaryViewProtocol>
 
 @property (nonatomic, strong) UILabel *label;
+@property (nonatomic, assign) BOOL isHeader;
 
 @end

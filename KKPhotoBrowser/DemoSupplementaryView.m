@@ -48,12 +48,16 @@
     return CGSizeMake(size.width, height + 10 * 2);
 }
 
--  (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    _label.frame = CGRectMake(10, 0,
-                              self.bounds.size.width-10*2,
-                              self.bounds.size.height);
+- (CGRect)layoutSupplementaryViewThatFrame:(CGRect)frame {
+    CGRect newFrame = CGRectZero;
+    CGSize size = CGSizeMake(134, 25);
+    CGFloat height = 60;
+    if (!_isHeader) {
+        height = frame.size.height-size.height-20;
+    }
+    newFrame = CGRectMake((frame.size.width - size.width)*0.5, height, size.width, size.height);
+    self.frame = newFrame;
+    return newFrame;
 }
 
 @end

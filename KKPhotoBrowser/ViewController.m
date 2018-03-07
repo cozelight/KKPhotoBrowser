@@ -139,6 +139,7 @@
 - (DemoSupplementaryView *)header {
     if (!_header) {
         _header = [[DemoSupplementaryView alloc] init];
+        _header.isHeader = YES;
     }
     return _header;
 }
@@ -149,6 +150,14 @@
     }
     return _footer;
 }
+
+#pragma mark - KKMediaBrowserDataSource
+
+- (NSArray <__kindof UIView<KKMediaSupplementaryViewProtocol>*> *)supplementaryViewsForMediaBrowser:(KKMediaBrowser *)mediaBrowser {
+    return @[self.header, self.footer];
+}
+
+#pragma mark - KKMediaBrowserDelage
 
 - (void)mediaBrowser:(KKMediaBrowser *)mediaBrowser didShowMediaAtIndex:(NSUInteger)index {
     self.header.label.text = [NSString stringWithFormat:@"header - %lu", (unsigned long)index];
